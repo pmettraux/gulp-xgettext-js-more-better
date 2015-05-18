@@ -28,7 +28,7 @@
     "gettext-catalog": "0.0.2",
     "gulp-util": "^3.0.4",
     "through2": "^0.6.5",
-    "xgettext-js-more-better": "0.0.2"
+    "xgettext-js-more-better": "0.0.3"
   },
   "devDependencies": {
     "jscs": "^1.12.0",
