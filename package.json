@@ -1,6 +1,6 @@
 {
   "name": "gulp-xgettext-js-more-better",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Gulp plugin to extract translatable strings from Javascript",
   "author": "Gabe Gorelick",
   "license": "MIT",
