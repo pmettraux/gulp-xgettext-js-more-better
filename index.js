@@ -39,10 +39,10 @@ module.exports = function (options) {
     if (!firstFile) {
       firstFile = file;
     }
-
-    var messages = xgettext(file.contents.toString(), {
-      filename: path.relative(file.cwd, file.path)
-    });
+    
+    // add file name to the options
+    options.filename = path.relative(file.cwd, file.path);
+    var messages = xgettext(file.contents.toString(), options);
     catalog.addMessages(messages.messages);
 
     return cb();
