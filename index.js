@@ -5,9 +5,10 @@ var gutil = require('gulp-util');
 var through = require('through2');
 var xgettext = require('xgettext-js-more-better');
 var Catalog = require('gettext-catalog');
+var assign = require('object-assign');
 
-module.exports = function (options) {
-  var catalog = new Catalog(options);
+module.exports = function (catalogOptions, xgettextOptions, espreeOptions) {
+  var catalog = new Catalog(catalogOptions);
 
   var firstFile = null;
 
@@ -40,9 +41,9 @@ module.exports = function (options) {
       firstFile = file;
     }
 
-    var messages = xgettext(file.contents.toString(), {
+    var messages = xgettext(file.contents.toString(), assign({
       filename: path.relative(file.cwd, file.path)
-    });
+    }, xgettextOptions), espreeOptions);
     catalog.addMessages(messages.messages);
 
     return cb();

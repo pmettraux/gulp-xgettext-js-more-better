@@ -93,4 +93,26 @@ describe('gulp-xgettext-js-more-better', function () {
     }));
     stream.end();
   });
+
+  it('should allow passing options to xgettext-js-more-better', function (done) {
+    var file = new File({
+      cwd: __dirname,
+      base: __dirname,
+      path: path.join(__dirname, 'foo.js'),
+      contents: new Buffer('let foo = gettext("Hi")')
+    });
+
+    var stream = xgettext({}, {}, {ecmaFeatures: {blockBindings: true}});
+    stream.on('error', done);
+    stream.on('data', function (file) {
+      var catalog = PO.parse(file.contents.toString());
+
+      catalog.items.length.should.equal(1);
+      catalog.items[0].msgid.should.equal('Hi');
+
+      done();
+    });
+    stream.write(file);
+    stream.end();
+  });
 });
